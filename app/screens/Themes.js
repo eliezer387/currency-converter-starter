@@ -17,7 +17,6 @@ class Themes extends Component {
     navigation: PropTypes.object,
   };
   handleThemePress = (color) => {
-    console.log('handle theme press ', color);
     this.props.navigation.goBack();
   };
   render() {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, Keyboard, Animated, Platform } from 'react-native';
-
 import styles from './styles';
 
 const ANIMATION_DURATION = 250;
@@ -61,7 +60,11 @@ class Logo extends Component {
       { width: this.containerImageWidth, height: this.containerImageWidth },
     ];
 
-    const imageStyles = [styles.image, { width: this.imageWidth, height: this.imageWidth }];
+    const imageStyles = [
+      styles.image,
+      { width: this.imageWidth },
+      this.props.tintColor ? { tintColor: this.props.tintColor } : null,
+    ];
 
     return (
       <View style={styles.container}>

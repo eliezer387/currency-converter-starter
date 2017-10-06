@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, StatusBar, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
-
 import { Container } from '../components/Container';
 import { Logo } from '../components/Logo';
 import { InputWithButton } from '../components/TextInput';
 import { ClearButton } from '../components/Button';
 import { LastConverted } from '../components/Text';
 import { Header } from '../components/Header';
-
 import { swapCurrency, changeCurrencyAmount } from '../actions/currencies';
 
 class Home extends Component {
@@ -22,6 +20,7 @@ class Home extends Component {
     conversionRate: PropTypes.number,
     isFetching: PropTypes.bool,
     lastConversionDate: PropTypes.object,
+    primaryColor: PropTypes.string,
   };
 
   handlePressBaseCurrency = () => {
@@ -50,11 +49,15 @@ class Home extends Component {
       quotePrice = '...';
     }
     return (
-      <Container>
-        <StatusBar translucent={false} barStyle="light-content" />
+      <Container backgroundColor={this.props.primaryColor}>
+        <StatusBar
+          backgroundColor={this.props.primaryColor}
+          translucent={false}
+          barStyle="light-content"
+        />
         <Header onPress={this.handleOptionsPress} />
         <KeyboardAvoidingView behavior="padding">
-          <Logo />
+          <Logo tintColor={this.props.primaryColor} />
           <View />
           <InputWithButton
             buttonText={this.props.baseCurrency}
@@ -63,12 +66,14 @@ class Home extends Component {
             defaultValue={this.props.amount.toString()}
             keyboardType="numeric"
             onChangeText={this.handleTextChange}
+            textColor={this.props.primaryColor}
           />
           <InputWithButton
             onPress={this.handlePressQuoteCurrency}
             buttonText={this.props.quoteCurrency}
             editable={false}
             defaultValue={quotePrice}
+            textColor={this.props.primaryColor}
           />
           <LastConverted
             date={this.props.lastConversionDate}
@@ -96,6 +101,7 @@ const mapStateToProps = (state) => {
     conversionRate: rates[quoteCurrency] || 0,
     isFetching: conversionSelector.isFetching,
     lastConversionDate: conversionSelector.date ? new Date(conversionSelector.date) : new Date(),
+    primaryColor: state.theme.primaryColor,
   };
 };
 

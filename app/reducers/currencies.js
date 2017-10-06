@@ -73,6 +73,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         amount: action.amount || 0,
       };
+
     case SWAP_CURRENCY:
       return {
         ...state,

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { ScrollView, StatusBar, Platform, Linking } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
-
 import { ListItem, Separator } from '../components/List';
 import { connectAlert } from '../components/Alert';
 

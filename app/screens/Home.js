@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, StatusBar, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
+
 import { Container } from '../components/Container';
 import { Logo } from '../components/Logo';
 import { InputWithButton } from '../components/TextInput';
 import { ClearButton } from '../components/Button';
 import { LastConverted } from '../components/Text';
 import { Header } from '../components/Header';
-import { swapCurrency, changeCurrencyAmount } from '../actions/currencies';
+
+import { swapCurrency, changeCurrencyAmount, getInitialConversion } from '../actions/currencies';
 
 class Home extends Component {
   static propTypes = {
@@ -22,6 +24,10 @@ class Home extends Component {
     lastConversionDate: PropTypes.object,
     primaryColor: PropTypes.string,
   };
+
+  componentWillMount() {
+    this.props.dispatch(getInitialConversion());
+  }
 
   handlePressBaseCurrency = () => {
     this.props.navigation.navigate('CurrencyList', { title: 'Base Currency', type: 'base' });

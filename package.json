@@ -31,7 +31,7 @@
   "dependencies": {
     "@expo/vector-icons": "^5.1.0",
     "color": "^2.0.0",
-    "expo": "^20.0.0",
+    "expo": "^48.0.0",
     "hoist-non-react-statics": "^2.3.0",
     "moment": "^2.29.4",
     "prop-types": "^15.5.10",
